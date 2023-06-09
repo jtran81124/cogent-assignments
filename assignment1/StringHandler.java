@@ -1,9 +1,16 @@
 package assignment1;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 public class StringHandler {
+
+    /*
+    HOW DO GRADE? Some methods are out of order.
+    The main below is ordered correctly.
+     */
 
 
     public String removeChar(String s, String badChar){
@@ -122,6 +129,7 @@ public class StringHandler {
         return out;
     }
 
+
     public int[] countVowelsAndConsonates(String s){
 
         int[] out = {0, 0};
@@ -150,17 +158,163 @@ public class StringHandler {
     }
 
     public char mostFreqChar(String s){
+
+        int[] alphaArr = new int[26];
         s.toLowerCase();
-        char out = ' ';
+        int max_index = 0;
         int max = 0;
 
+        //count all the characters
         for(int i = 0; i < s.length(); i++){
+            alphaArr[s.charAt(i) - 'a']++;
+        }
 
-
+        for(int i = 0; i < alphaArr.length; i++) {
+            //new max
+            if(alphaArr[i] > max){
+                max_index = i;
+                max = alphaArr[i];
+            }
         }
 
 
+        char out_char = (char) (max_index + 'a');
+        System.out.println("Most freq char: " + out_char);
+        return out_char;
+    }
 
+    public void countCharTypes(String s){
+        int alph = 0, digi = 0, spl = 0;
+
+        for(int i = 0; i < s.length(); i++){
+            char ch = s.charAt(i);
+            if(ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z' ) {
+                alph++;
+            }
+            else if(ch >= '0' && ch <= '9') {
+                digi++;
+            }
+            else {
+                spl++;
+            }
+        }
+
+        System.out.println("Alpha: " + alph + " Digits: " + digi + " Special: " + spl);
+    }
+
+    public String replaceFirstVowel(String s){
+        String out = "";
+        for(int i = 0; i < s.length(); i++){
+            if(isVowel(s.charAt(i))){
+                out += "-" + s.substring(i+1, s.length());
+                System.out.println(out);
+                return out;
+            }
+            else{
+                out += s.charAt(i);
+            }
+        }
+
+        return out;
+    }
+
+    public String replaceSpaces(String s){
+        s = s.replaceAll("\\s", "");
+        System.out.println(s);
+        return s;
+    }
+
+    //TODO: not done
+    public String removeRepeats(String s){
+
+        char last = ' ';
+        String out = "";
+        for(int i = 0; i < s.length(); i++){
+            char curr_char = s.charAt(i);
+            if(curr_char != last){
+                out += curr_char;
+                last = curr_char;
+            }
+        }
+        System.out.println(out);
+        return out;
+    }
+
+    public int calculateSumOfIntegers(String s) {
+
+        int sum = 0;
+
+        for(int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if(ch >= '0' && ch <= '9'){
+                sum += ch - '0';
+            }
+
+
+
+        }
+        System.out.println(sum);
+
+        return sum;
+    }
+
+    public String getNonRepeats(String s){
+
+        //Annoying edge cases
+
+        if(s.length() <= 1){
+            return s;
+        } else if (s.length() == 2) {
+
+            if(s.charAt(0) == s.charAt(1)){
+                return "";
+            }
+            return s;
+        }
+
+
+        //abc
+        int curr = 1;
+        String out = "" + s.charAt(0);
+        char last = ' ';
+        while(curr+1 < s.length()-1){
+
+            //repeat found, add nothing
+            if(s.charAt(curr-1) == s.charAt(curr)){
+                last = ' ';
+
+
+            }
+            else{
+                last = s.charAt(curr-1);
+                out += s.charAt(curr);
+            }
+            curr++;
+
+        }
+
+        System.out.println(out);
+        return out;
+    }
+
+    public String sortedAscendingString(String s){
+        char arr[] = s.toCharArray();
+        Arrays.sort(arr);
+        String out = new String(arr);
+        System.out.println(out);
+        return out;
+
+    }
+    public String sortedDecendingString(String s){
+
+        s = sortedAscendingString(s);
+
+        String out = "";
+
+        for(int i =  s.length()-1; i >= 0; i--) {
+            out += s.charAt(i);
+        }
+        System.out.println(out);
         return out;
     }
 
@@ -192,5 +346,21 @@ public class StringHandler {
 
         sh.countVowelsAndConsonates("hello");
 
+        sh.mostFreqChar("abdddc");
+
+        sh.replaceFirstVowel("race");
+
+        sh.countCharTypes("__DragonSlayer101__");
+
+        sh.replaceSpaces("The Big brown fox jumped over the    lazy dog");
+
+        sh.removeRepeats("bananna");
+
+        sh.calculateSumOfIntegers("the55");
+        //TODO: not done
+        sh.getNonRepeats("aab");
+
+        //also shows ascending and descending order
+        sh.sortedDecendingString("cab");
     }
 }
