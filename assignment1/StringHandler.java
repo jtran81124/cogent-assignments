@@ -361,6 +361,6 @@ public class StringHandler {
         sh.getNonRepeats("aab");
 
         //also shows ascending and descending order
-        sh.sortedDecendingString("cab");
+        sh.sortedDecendingString("cabb");
     }
 }
