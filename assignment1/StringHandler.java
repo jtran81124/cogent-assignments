@@ -22,8 +22,8 @@ public class StringHandler {
                 out += s.charAt(i);
             }
         }
-        System.out.print("Removing '" + badChar + "' from '"+ s + "': ");
-        System.out.println(out);
+        //System.out.print("Removing '" + badChar + "' from '"+ s + "': ");
+        //System.out.println(out);
         return out;
     }
 
@@ -132,7 +132,7 @@ public class StringHandler {
 
     public int[] countVowelsAndConsonates(String s){
 
-        int[] out = {0, 0};
+
         Set<Character> h = new HashSet<Character>();
         h.add('a');
         h.add('e');
@@ -153,6 +153,7 @@ public class StringHandler {
         consonates = s.length() - vowels;
 
         System.out.println("Consonates: " + consonates + " Vowels: " + vowels);
+        int[] out = {consonates, vowels};
         return out;
 
     }
@@ -183,7 +184,7 @@ public class StringHandler {
         return out_char;
     }
 
-    public void countCharTypes(String s){
+    public int[] countCharTypes(String s){
         int alph = 0, digi = 0, spl = 0;
 
         for(int i = 0; i < s.length(); i++){
@@ -200,6 +201,8 @@ public class StringHandler {
         }
 
         System.out.println("Alpha: " + alph + " Digits: " + digi + " Special: " + spl);
+        int[] out = {alph, digi, spl};
+        return out;
     }
 
     public String replaceFirstVowel(String s){
@@ -301,7 +304,7 @@ public class StringHandler {
         char arr[] = s.toCharArray();
         Arrays.sort(arr);
         String out = new String(arr);
-        System.out.println(out);
+        //System.out.println(out);
         return out;
 
     }
@@ -314,7 +317,7 @@ public class StringHandler {
         for(int i =  s.length()-1; i >= 0; i--) {
             out += s.charAt(i);
         }
-        System.out.println(out);
+        //System.out.println(out);
         return out;
     }
 
@@ -362,5 +365,7 @@ public class StringHandler {
 
         //also shows ascending and descending order
         sh.sortedDecendingString("cabb");
+
+
     }
 }
